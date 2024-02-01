@@ -1,95 +1,100 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import SidebarLayout from "@/components/sidebar/SidebarLayout";
+import CardComponent from "@/components/card/CardComponent";
+import "office-ui-fabric-react/dist/css/fabric.css";
+import { CardData } from "@/types/types";
 
-export default function Home() {
+const Home = () => {
+  const cardData: CardData[] = [
+    {
+      id: 1,
+      title: "Card 1",
+    },
+    {
+      id: 2,
+      title: "Card 2",
+    },
+    {
+      id: 3,
+      title: "Card 3",
+    },
+    {
+      id: 5,
+      title: "Card 5",
+    },
+
+    {
+      id: 6,
+      title: "Card 6",
+    },
+    {
+      id: 7,
+      title: "Card 7",
+    },
+    {
+      id: 8,
+      title: "Card 8",
+    },
+    {
+      id: 9,
+      title: "Card 9",
+    },
+    {
+      id: 10,
+      title: "Card 10",
+    },
+    {
+      id: 11,
+      title: "Card 11",
+    },
+    {
+      id: 12,
+      title: "Card 12",
+    },
+    {
+      id: 13,
+      title: "Card 13",
+    },
+    {
+      id: 14,
+      title: "Card 14",
+    },
+  ];
+
+  const cardsPerRow = 4;
+
+  const rows = [];
+
+  for (let i = 0; i < cardData.length; i += cardsPerRow) {
+    rows.push(cardData.slice(i, i + cardsPerRow));
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div className="ms-Grid" dir="ltr">
+        <div className="ms-Grid-row">
+          <div className="ms-Grid-col ms-sm1 ms-xl1">
+            <SidebarLayout />
+          </div>
+          <div className="main-element ms-Grid-col ms-sm11 ms-xl11">
+            {rows.map((row, rowIndex) => (
+              <div key={rowIndex} className="ms-Grid-row">
+                {row.map((card) => (
+                  <div
+                    key={card.id}
+                    className="ms-Grid-col ms-sm3 ms-xl3"
+                    style={{ paddingBottom: "20px" }}
+                  >
+                    <CardComponent title={card.title} />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </>
   );
-}
+};
+
+export default Home;
