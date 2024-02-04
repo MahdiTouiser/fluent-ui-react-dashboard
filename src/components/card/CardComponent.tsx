@@ -33,6 +33,7 @@ const useStyles = makeStyles({
   },
   title: {
     userSelect: "none",
+    fontSize: "10px",
   },
   footer: {
     display: "flex",
@@ -51,7 +52,7 @@ const CardComponent = ({ title }: { title: string }) => {
   };
 
   return (
-    <Card className={styles.card} style={{ borderColor: "green !important" }}>
+    <Card className={styles.card} style={{ border: "none !important" }}>
       <CardPreview>
         <FontAwesomeIcon className={styles.tvIcon} icon={faTv} size="2x" />
       </CardPreview>
