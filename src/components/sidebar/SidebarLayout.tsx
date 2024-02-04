@@ -8,9 +8,12 @@ const navigationStyles = {
     width: "200px",
     height: "110vh",
     boxSizing: "border-box",
-    border: "1px solid #eee",
+    border: "5px solid #eee",
     overflowY: "auto",
     paddingTop: "10vh",
+  },
+  groupContent: {
+    marginBottom: "30px",
   },
 };
 
@@ -20,65 +23,37 @@ const links = [
       {
         name: "Dashboard",
         key: "key1",
-        url: "/",
+        url: "/dashboard",
         iconProps: {
           iconName: "News",
           styles: {
             root: {
-              fontSize: 20,
+              fontSize: 50,
               color: "black",
             },
           },
         },
       },
-      // {
-      //   name: "Settings",
-      //   key: "key2",
-      //   url: "/settings",
-      //   iconProps: {
-      //     iconName: "Settings",
-      //     styles: {
-      //       root: {
-      //         fontSize: 20,
-      //         color: "#106ebe",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   name: "Transfer",
-      //   key: "key3",
-      //   url: "/",
-      //   iconProps: {
-      //     iconName: "SwitcherStartEnd",
-      //     styles: {
-      //       root: {
-      //         fontSize: 20,
-      //         color: "#106ebe",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   name: "Stats",
-      //   key: "key4",
-      //   url: "/",
-      //   iconProps: {
-      //     iconName: "StackedLineChart",
-      //     styles: {
-      //       root: {
-      //         fontSize: 20,
-      //         color: "#106ebe",
-      //       },
-      //     },
-      //   },
-      // },
+      {
+        name: "Services",
+        key: "key2",
+        url: "/services",
+        iconProps: {
+          iconName: "Cloud",
+          styles: {
+            root: {
+              fontSize: 50,
+              color: "black",
+            },
+          },
+        },
+      },
     ],
   },
 ];
 
 const SidebarLayout = () => {
-  const [selectedItem, setSelectedItem] = useState(links[0].links[0].key);
+  const [selectedItem, setSelectedItem] = useState(links[0].links[1].key);
   initializeIcons();
   return (
     <>
