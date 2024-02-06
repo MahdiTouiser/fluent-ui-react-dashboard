@@ -20,16 +20,14 @@ const Devices = () => {
   };
 
   const totalCards = 4000;
-
-  const cardData = generateCardData(totalCards);
-  const cardsPerPage = 36;
+  const cardsPerPage = 16;
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   const startIndex = (currentPage - 1) * cardsPerPage;
-  const endIndex = startIndex + cardsPerPage;
-  const currentRows = cardData.slice(startIndex, endIndex);
+  const endIndex = Math.min(startIndex + cardsPerPage, totalCards);
+  const currentRows = generateCardData(totalCards).slice(startIndex, endIndex);
 
   const totalPages = Math.ceil(totalCards / cardsPerPage);
 
@@ -52,21 +50,15 @@ const Devices = () => {
           </Stack>
         ) : (
           <div className="ms-Grid" dir="ltr">
-            <div className="ms-Grid-row">
-              {currentRows.map((card) => (
-                <div
-                  key={card.id}
-                  className="ms-Grid-col ms-sm1 ms-xl1"
-                  style={{
-                    padding: '20px',
-                    width: '175px',
-                    height: '175px',
-                  }}
-                >
-                  <CardComponent title={card.title} />
-                </div>
-              ))}
-            </div>
+            {[...Array(4)].map((_, rowIndex) => (
+              <div className="ms-Grid-row" key={rowIndex}>
+                {currentRows.slice(rowIndex * 4, (rowIndex + 1) * 4).map((card) => (
+                  <div key={card.id} className="ms-Grid-col ms-sm3">
+                    <CardComponent title={card.title} />
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         )}
         <Pagination currentPage={currentPage} totalPages={totalPages} onChange={handlePageChange} onLoadingChange={handleLoadingChange} />

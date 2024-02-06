@@ -1,30 +1,25 @@
 'use client';
-
 import { useState } from 'react';
 import { makeStyles, shorthands, Title1, Card, CardFooter, CardPreview } from '@fluentui/react-components';
 import { Icon } from '@fluentui/react';
 
 const useStyles = makeStyles({
   card: {
-    ...shorthands.margin('auto'),
-    ...shorthands.padding('20px'),
+    ...shorthands.margin('15px'),
+    ...shorthands.padding('30px'),
     width: '360px',
-    maxWidth: '100%',
+    height: '180px',
+    userSelect: 'none',
   },
   toggleIcon: {
     cursor: 'pointer',
     userSelect: 'none',
   },
   title: {
-    fontSize: '10px',
+    fontSize: '20px',
     userSelect: 'none',
   },
-  footer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'green',
-  },
+  footer: { display: 'flex', justifyContent: 'end', alignItems: 'center' },
 });
 
 const CardComponent = ({ title }: { title: string }) => {
@@ -38,11 +33,11 @@ const CardComponent = ({ title }: { title: string }) => {
   return (
     <Card className={styles.card}>
       <CardPreview>
-        <Icon iconName="TVMonitor" style={{ fontSize: '5em' }} />
+        <Icon iconName="TVMonitor" style={{ fontSize: '100px' }} />
       </CardPreview>
 
       <CardFooter className={styles.footer}>
-        <Icon iconName={toggle ? 'CircleFill' : 'CircleFill'} onClick={toggleHandler} className={styles.toggleIcon} style={{ color: toggle ? 'green' : 'red' }} />
+        <Icon iconName="CircleFill" onClick={toggleHandler} className={styles.toggleIcon} style={{ color: toggle ? 'green' : 'red' }} />
         <Title1 className={styles.title}>{title}</Title1>
       </CardFooter>
     </Card>
