@@ -1,45 +1,29 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import {
-  makeStyles,
-  Body1,
-  Caption1,
-  shorthands,
-  Title1,
-} from "@fluentui/react-components";
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardPreview,
-} from "@fluentui/react-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faToggleOn, faTv } from "@fortawesome/free-solid-svg-icons";
-import { faToggleOff } from "@fortawesome/free-solid-svg-icons/faToggleOff";
+import { useState } from 'react';
+import { makeStyles, shorthands, Title1, Card, CardFooter, CardPreview } from '@fluentui/react-components';
+import { Icon } from '@fluentui/react';
 
 const useStyles = makeStyles({
   card: {
-    ...shorthands.margin("auto"),
-    ...shorthands.padding("20px"),
-    width: "240px",
-    maxWidth: "100%",
+    ...shorthands.margin('auto'),
+    ...shorthands.padding('20px'),
+    width: '360px',
+    maxWidth: '100%',
   },
   toggleIcon: {
-    cursor: "pointer",
-  },
-  tvIcon: {
-    fontSize: "10px",
+    cursor: 'pointer',
+    userSelect: 'none',
   },
   title: {
-    userSelect: "none",
-    fontSize: "10px",
+    fontSize: '10px',
+    userSelect: 'none',
   },
   footer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "green",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'green',
   },
 });
 
@@ -52,17 +36,13 @@ const CardComponent = ({ title }: { title: string }) => {
   };
 
   return (
-    <Card className={styles.card} style={{ border: "none !important" }}>
+    <Card className={styles.card}>
       <CardPreview>
-        <FontAwesomeIcon className={styles.tvIcon} icon={faTv} size="2x" />
+        <Icon iconName="TVMonitor" style={{ fontSize: '5em' }} />
       </CardPreview>
 
       <CardFooter className={styles.footer}>
-        <FontAwesomeIcon
-          icon={toggle ? faToggleOn : faToggleOff}
-          onClick={toggleHandler}
-          className={styles.toggleIcon}
-        />
+        <Icon iconName={toggle ? 'CircleFill' : 'CircleFill'} onClick={toggleHandler} className={styles.toggleIcon} style={{ color: toggle ? 'green' : 'red' }} />
         <Title1 className={styles.title}>{title}</Title1>
       </CardFooter>
     </Card>

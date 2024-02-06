@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { Nav, initializeIcons } from "@fluentui/react";
-import { useState } from "react";
+import { Nav, initializeIcons } from '@fluentui/react';
+import { useState } from 'react';
 
 const navigationStyles = {
   root: {
-    width: "200px",
-    height: "110vh",
-    boxSizing: "border-box",
-    border: "5px solid #eee",
-    overflowY: "auto",
-    paddingTop: "10vh",
+    width: '200px',
+    height: '100vh',
+    boxSizing: 'border-box',
+    border: '5px solid #eee',
+    overflowY: 'auto',
+    paddingTop: '10vh',
   },
   groupContent: {
-    marginBottom: "30px",
+    marginBottom: '30px',
   },
 };
 
@@ -21,29 +21,29 @@ const links = [
   {
     links: [
       {
-        name: "Dashboard",
-        key: "key1",
-        url: "/dashboard",
+        name: 'Dashboard',
+        key: 'key1',
+        url: '/dashboard',
         iconProps: {
-          iconName: "News",
+          iconName: 'ViewDashboard',
           styles: {
             root: {
-              fontSize: 50,
-              color: "black",
+              fontSize: 30,
+              color: 'black',
             },
           },
         },
       },
       {
-        name: "Services",
-        key: "key2",
-        url: "/services",
+        name: 'Devices',
+        key: 'key2',
+        url: '/devices',
         iconProps: {
-          iconName: "Cloud",
+          iconName: 'Devices3',
           styles: {
             root: {
-              fontSize: 50,
-              color: "black",
+              fontSize: 30,
+              color: 'black',
             },
           },
         },
@@ -57,12 +57,7 @@ const SidebarLayout = () => {
   initializeIcons();
   return (
     <>
-      <Nav
-        groups={links}
-        selectedKey={selectedItem}
-        onLinkClick={(ev, item) => setSelectedItem(item?.key || "")}
-        styles={navigationStyles}
-      />
+      <Nav groups={links} selectedKey={selectedItem} onLinkClick={(ev, item) => setSelectedItem(item?.key || '')} styles={navigationStyles} />
     </>
   );
 };

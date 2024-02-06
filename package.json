@@ -11,9 +11,7 @@
   "dependencies": {
     "@fluentui/react": "^8.115.3",
     "@fluentui/react-components": "^9.46.3",
-    "@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@uifabric/icons": "^7.9.5",
     "next": "14.1.0",
     "office-ui-fabric-react": "^7.204.0",
     "react": "^18",
