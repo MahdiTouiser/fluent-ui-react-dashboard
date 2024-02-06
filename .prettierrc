@@ -1,0 +1,5 @@
+{
+  "printWidth": 200,
+  "singleQuote": true,
+  "angular_braces": "avoid-new-line"
+}

@@ -1,13 +1,13 @@
-"use client";
-import { useEffect, useState } from "react";
-import SidebarLayout from "@/components/sidebar/SidebarLayout";
-import CardComponent from "@/components/card/CardComponent";
-import "office-ui-fabric-react/dist/css/fabric.css";
-import { Stack } from "@fluentui/react";
-import Pagination from "@/components/pagination/Pagination";
-import { Spinner } from "office-ui-fabric-react";
+'use client';
 
-const Services = () => {
+import { useEffect, useState } from 'react';
+import SidebarLayout from '@/components/sidebar/SidebarLayout';
+import CardComponent from '@/components/card/CardComponent';
+import 'office-ui-fabric-react/dist/css/fabric.css';
+import { Spinner, Stack } from '@fluentui/react';
+import Pagination from '@/components/pagination/Pagination';
+
+const Devices = () => {
   const generateCardData = (count: number) => {
     const cards = [];
     for (let i = 1; i <= count; i++) {
@@ -22,7 +22,7 @@ const Services = () => {
   const totalCards = 4000;
 
   const cardData = generateCardData(totalCards);
-  const cardsPerPage = 60;
+  const cardsPerPage = 36;
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,38 +41,38 @@ const Services = () => {
   const handleLoadingChange = (loading: boolean) => {
     setIsLoading(loading);
   };
+
   return (
-    <Stack tokens={{ childrenGap: 20 }}>
-      <div className="ms-Grid" dir="ltr">
-        <div className="ms-Grid-row">
-          <div className="ms-Grid-col ms-sm1 ms-xl1 ">
-            <SidebarLayout />
-          </div>
-          <div className="main-element ms-Grid-col ms-sm10 ms-xl10">
-            {isLoading ? (
-              <Spinner label="Loading..." />
-            ) : (
-              currentRows.map((card) => (
+    <Stack horizontal tokens={{ childrenGap: 20 }} style={{ overflowX: 'auto', maxWidth: '100%' }}>
+      <SidebarLayout />
+      <Stack grow>
+        {isLoading ? (
+          <Stack verticalAlign="center" horizontalAlign="center" style={{ height: '100%', width: '100%' }}>
+            <Spinner label="Loading..." />
+          </Stack>
+        ) : (
+          <div className="ms-Grid" dir="ltr">
+            <div className="ms-Grid-row">
+              {currentRows.map((card) => (
                 <div
                   key={card.id}
                   className="ms-Grid-col ms-sm1 ms-xl1"
-                  style={{ paddingBottom: "20px" }}
+                  style={{
+                    padding: '20px',
+                    width: '175px',
+                    height: '175px',
+                  }}
                 >
                   <CardComponent title={card.title} />
                 </div>
-              ))
-            )}
+              ))}
+            </div>
           </div>
-        </div>
-      </div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onChange={handlePageChange}
-        onLoadingChange={handleLoadingChange}
-      />
+        )}
+        <Pagination currentPage={currentPage} totalPages={totalPages} onChange={handlePageChange} onLoadingChange={handleLoadingChange} />
+      </Stack>
     </Stack>
   );
 };
 
-export default Services;
+export default Devices;
