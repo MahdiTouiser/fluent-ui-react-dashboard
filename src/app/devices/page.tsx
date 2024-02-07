@@ -4,10 +4,13 @@ import { useEffect, useState } from 'react';
 import SidebarLayout from '@/components/sidebar/SidebarLayout';
 import CardComponent from '@/components/card/CardComponent';
 import 'office-ui-fabric-react/dist/css/fabric.css';
-import { Spinner, Stack } from '@fluentui/react';
+import { Spinner, Stack, initializeIcons } from '@fluentui/react';
+import { SpinnerSize } from '@fluentui/react/lib/Spinner';
 import Pagination from '@/components/pagination/Pagination';
-
+import { Text } from '@fluentui/react-components';
 const Devices = () => {
+  initializeIcons();
+
   const generateCardData = (count: number) => {
     const cards = [];
     for (let i = 1; i <= count; i++) {
@@ -41,19 +44,20 @@ const Devices = () => {
   };
 
   return (
-    <Stack horizontal tokens={{ childrenGap: 20 }} style={{ overflowX: 'auto', maxWidth: '100%' }}>
+    <Stack horizontal tokens={{ childrenGap: 10 }} style={{ overflowX: 'auto', maxWidth: '100%' }}>
       <SidebarLayout />
       <Stack grow>
+        <Text style={{ fontSize: '3rem', marginLeft: '20px', userSelect: 'none' }}>Devices</Text>
         {isLoading ? (
           <Stack verticalAlign="center" horizontalAlign="center" style={{ height: '100%', width: '100%' }}>
-            <Spinner label="Loading..." />
+            <Spinner size={SpinnerSize.large} label="Loading..." />
           </Stack>
         ) : (
           <div className="ms-Grid" dir="ltr">
             {[...Array(4)].map((_, rowIndex) => (
               <div className="ms-Grid-row" key={rowIndex}>
                 {currentRows.slice(rowIndex * 4, (rowIndex + 1) * 4).map((card) => (
-                  <div key={card.id} className="ms-Grid-col ms-sm3">
+                  <div key={card.id} className="ms-Grid-col ms-sm3" style={{ marginTop: '10px' }}>
                     <CardComponent title={card.title} />
                   </div>
                 ))}

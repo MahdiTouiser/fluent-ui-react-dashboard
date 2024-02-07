@@ -1,25 +1,32 @@
 'use client';
 import { useState } from 'react';
-import { makeStyles, shorthands, Title1, Card, CardFooter, CardPreview } from '@fluentui/react-components';
+import { makeStyles, shorthands, Title1, Card, CardFooter, CardPreview, Image } from '@fluentui/react-components';
 import { Icon } from '@fluentui/react';
 
 const useStyles = makeStyles({
   card: {
-    ...shorthands.margin('15px'),
-    ...shorthands.padding('30px'),
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'relative',
     width: '360px',
-    height: '180px',
     userSelect: 'none',
+    ...shorthands.margin('25px'),
+    ...shorthands.padding('20px'),
+  },
+  cardFooter: {
+    position: 'absolute',
+    bottom: '10px',
+    right: '10px',
   },
   toggleIcon: {
     cursor: 'pointer',
     userSelect: 'none',
   },
   title: {
-    fontSize: '20px',
+    fontSize: '15px',
     userSelect: 'none',
   },
-  footer: { display: 'flex', justifyContent: 'end', alignItems: 'center' },
 });
 
 const CardComponent = ({ title }: { title: string }) => {
@@ -33,10 +40,10 @@ const CardComponent = ({ title }: { title: string }) => {
   return (
     <Card className={styles.card}>
       <CardPreview>
-        <Icon iconName="TVMonitor" style={{ fontSize: '100px' }} />
+        <Image alt="Server's background" src={'/background.jpg'} style={{ width: '150px', height: '100px', borderRadius: '10px', marginTop: '10px' }} />
       </CardPreview>
 
-      <CardFooter className={styles.footer}>
+      <CardFooter className={styles.cardFooter}>
         <Icon iconName="CircleFill" onClick={toggleHandler} className={styles.toggleIcon} style={{ color: toggle ? 'green' : 'red' }} />
         <Title1 className={styles.title}>{title}</Title1>
       </CardFooter>

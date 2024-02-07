@@ -1,16 +1,16 @@
 'use client';
 
-import { Nav, initializeIcons } from '@fluentui/react';
+import { Nav } from '@fluentui/react';
 import { useState } from 'react';
 
 const navigationStyles = {
   root: {
     width: '200px',
-    height: '100vh',
+    height: '95vh',
     boxSizing: 'border-box',
     border: '5px solid #eee',
     overflowY: 'auto',
-    paddingTop: '10vh',
+    paddingTop: '5vh',
   },
   groupContent: {
     marginBottom: '30px',
@@ -54,7 +54,6 @@ const links = [
 
 const SidebarLayout = () => {
   const [selectedItem, setSelectedItem] = useState(links[0].links[1].key);
-  initializeIcons();
   return (
     <>
       <Nav groups={links} selectedKey={selectedItem} onLinkClick={(ev, item) => setSelectedItem(item?.key || '')} styles={navigationStyles} />

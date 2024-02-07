@@ -21,7 +21,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onChan
       <IconButton iconProps={{ iconName: 'DoubleChevronLeft' }} disabled={currentPage === 1} onClick={() => handlePageChange(1)} />
       <IconButton iconProps={{ iconName: 'ChevronLeft' }} disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)} />
 
-      <span>{`Page ${currentPage} of ${totalPages}`}</span>
+      <span style={{ userSelect: 'none' }}>{`Page ${currentPage} of ${totalPages}`}</span>
 
       <IconButton iconProps={{ iconName: 'ChevronRight' }} disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)} />
       <IconButton iconProps={{ iconName: 'DoubleChevronRight' }} disabled={currentPage === totalPages} onClick={() => handlePageChange(totalPages)} />
