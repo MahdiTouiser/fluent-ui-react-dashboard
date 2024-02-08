@@ -5,12 +5,13 @@ import { useState } from 'react';
 
 const navigationStyles = {
   root: {
-    width: '200px',
-    height: '95vh',
+    width: '250px',
+    height: '100vh',
     boxSizing: 'border-box',
     border: '5px solid #eee',
     overflowY: 'auto',
-    paddingTop: '5vh',
+    paddingTop: '1vh',
+    backgroundColor: '#add8e6 !important',
   },
   groupContent: {
     marginBottom: '30px',

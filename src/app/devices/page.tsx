@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import SidebarLayout from '@/components/sidebar/SidebarLayout';
-import CardComponent from '@/components/card/CardComponent';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import { Spinner, Stack, initializeIcons } from '@fluentui/react';
 import { SpinnerSize } from '@fluentui/react/lib/Spinner';
 import Pagination from '@/components/pagination/Pagination';
 import { Text } from '@fluentui/react-components';
-const Devices = () => {
+import CardGrid from '@/components/cardGrid/CardGrid';
+
+const Devices: React.FC = () => {
   initializeIcons();
 
   const generateCardData = (count: number) => {
@@ -23,16 +24,19 @@ const Devices = () => {
   };
 
   const totalCards = 4000;
-  const cardsPerPage = 16;
+  const cardsPerRow = 6;
+  const rowsPerPage = 5;
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const cardsPerPage = cardsPerRow * rowsPerPage;
 
-  const startIndex = (currentPage - 1) * cardsPerPage;
-  const endIndex = Math.min(startIndex + cardsPerPage, totalCards);
-  const currentRows = generateCardData(totalCards).slice(startIndex, endIndex);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const totalPages = Math.ceil(totalCards / cardsPerPage);
+  const startIndex: number = (currentPage - 1) * cardsPerPage;
+  const endIndex: number = Math.min(startIndex + cardsPerPage, totalCards);
+  const currentRows: { id: number; title: string }[] = generateCardData(totalCards).slice(startIndex, endIndex);
+
+  const totalPages: number = Math.ceil(totalCards / cardsPerPage);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -44,28 +48,20 @@ const Devices = () => {
   };
 
   return (
-    <Stack horizontal tokens={{ childrenGap: 10 }} style={{ overflowX: 'auto', maxWidth: '100%' }}>
+    <Stack horizontal tokens={{ childrenGap: 5 }} style={{ overflowX: 'auto', maxWidth: '100%' }}>
       <SidebarLayout />
-      <Stack grow>
-        <Text style={{ fontSize: '3rem', marginLeft: '20px', userSelect: 'none' }}>Devices</Text>
+      <Stack grow style={{ position: 'relative' }}>
+        <Text style={{ fontSize: '2rem', marginLeft: '12px', userSelect: 'none' }}>Devices</Text>
         {isLoading ? (
           <Stack verticalAlign="center" horizontalAlign="center" style={{ height: '100%', width: '100%' }}>
             <Spinner size={SpinnerSize.large} label="Loading..." />
           </Stack>
         ) : (
-          <div className="ms-Grid" dir="ltr">
-            {[...Array(4)].map((_, rowIndex) => (
-              <div className="ms-Grid-row" key={rowIndex}>
-                {currentRows.slice(rowIndex * 4, (rowIndex + 1) * 4).map((card) => (
-                  <div key={card.id} className="ms-Grid-col ms-sm3" style={{ marginTop: '10px' }}>
-                    <CardComponent title={card.title} />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+          <CardGrid currentRows={currentRows} cardsPerRow={6} />
         )}
-        <Pagination currentPage={currentPage} totalPages={totalPages} onChange={handlePageChange} onLoadingChange={handleLoadingChange} />
+        <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', marginBottom: '10px' }}>
+          <Pagination currentPage={currentPage} totalPages={totalPages} onChange={handlePageChange} onLoadingChange={handleLoadingChange} />
+        </div>
       </Stack>
     </Stack>
   );
