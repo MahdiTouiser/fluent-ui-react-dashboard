@@ -1,29 +1,40 @@
 'use client';
 
 import { useState } from 'react';
-import { makeStyles, shorthands, Title1, Card, CardFooter, CardPreview } from '@fluentui/react-components';
+import { makeStyles, shorthands, Title1, Card, CardFooter, CardPreview, Image } from '@fluentui/react-components';
 import { Icon } from '@fluentui/react';
 
 const useStyles = makeStyles({
   card: {
-    ...shorthands.margin('auto'),
-    ...shorthands.padding('20px'),
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'relative',
     width: '360px',
     maxWidth: '100%',
+    userSelect: 'none',
+    ...shorthands.margin('5px'),
+    ...shorthands.padding('20px'),
+    ...shorthands.borderRadius('5px'),
+  },
+  cardFooter: {
+    position: 'absolute',
+    bottom: '10px',
+    right: '10px',
   },
   toggleIcon: {
     cursor: 'pointer',
     userSelect: 'none',
   },
   title: {
-    fontSize: '10px',
+    fontSize: '15px',
     userSelect: 'none',
   },
-  footer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'green',
+  moreIcon: {
+    fontSize: '24px',
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
   },
 });
 
@@ -37,12 +48,13 @@ const CardComponent = ({ title }: { title: string }) => {
 
   return (
     <Card className={styles.card}>
-      <CardPreview>
-        <Icon iconName="TVMonitor" style={{ fontSize: '5em' }} />
+      <CardPreview style={{ position: 'relative' }}>
+        <Image alt="Server's background" src={'/background.jpg'} style={{ width: '125px', height: '100px', borderRadius: '10px', marginTop: '10px' }} />
       </CardPreview>
+      <Icon iconName="More" className={styles.moreIcon} />
 
-      <CardFooter className={styles.footer}>
-        <Icon iconName={toggle ? 'CircleFill' : 'CircleFill'} onClick={toggleHandler} className={styles.toggleIcon} style={{ color: toggle ? 'green' : 'red' }} />
+      <CardFooter className={styles.cardFooter}>
+        <Icon iconName="CircleFill" onClick={toggleHandler} className={styles.toggleIcon} style={{ color: toggle ? 'green' : 'red' }} />
         <Title1 className={styles.title}>{title}</Title1>
       </CardFooter>
     </Card>
