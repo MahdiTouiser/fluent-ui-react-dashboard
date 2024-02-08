@@ -16,7 +16,6 @@ const useStyles = makeStyles({
     ...shorthands.margin('5px'),
     ...shorthands.padding('20px'),
     ...shorthands.borderRadius('5px'),
-    ...shorthands.border('0 '),
   },
   cardFooter: {
     position: 'absolute',

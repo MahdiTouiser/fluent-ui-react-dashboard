@@ -6,7 +6,7 @@ import { useState } from 'react';
 const navigationStyles = {
   root: {
     width: '250px',
-    height: '100vh',
+    height: '98vh',
     boxSizing: 'border-box',
     border: '5px solid #eee',
     overflowY: 'auto',
