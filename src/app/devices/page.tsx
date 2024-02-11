@@ -23,6 +23,22 @@ const Devices: React.FC = () => {
     return cards;
   };
 
+  useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/devices`);
+        const data = await response.json();
+        console.log('Data from API:', data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const totalCards = 4000;
   const cardsPerRow = 6;
   const rowsPerPage = 5;
