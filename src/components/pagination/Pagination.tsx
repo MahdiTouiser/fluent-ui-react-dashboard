@@ -1,5 +1,11 @@
 import { Stack, IconButton } from '@fluentui/react';
-import PaginationProps from '@/types/types';
+
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onChange: (newPage: number) => void;
+  onLoadingChange: (isLoading: boolean) => void;
+}
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onChange, onLoadingChange }) => {
   const handlePageChange = async (newPage: number) => {

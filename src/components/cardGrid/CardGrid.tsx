@@ -11,7 +11,7 @@ const CardGrid: React.FC<CardGridProps> = ({ currentRows, cardsPerRow }) => {
       {currentRows.map((_, rowIndex) => (
         <div className="ms-Grid-row" key={rowIndex}>
           {currentRows.slice(rowIndex * cardsPerRow, (rowIndex + 1) * cardsPerRow).map((card) => (
-            <div key={card.id} className="ms-Grid-col ms-sm2" style={{ marginTop: '10px' }}>
+            <div key={card.id} className="ms-Grid-col ms-sm3" style={{ margin: '16px 0' }}>
               <CardComponent title={card.title} />
             </div>
           ))}

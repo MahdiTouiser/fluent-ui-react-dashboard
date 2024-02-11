@@ -39,8 +39,8 @@ const Devices: React.FC = () => {
   }, []);
 
   const totalCards = 4000;
-  const cardsPerRow = 6;
-  const rowsPerPage = 5;
+  const cardsPerRow = 4;
+  const rowsPerPage = 4;
 
   const cardsPerPage = cardsPerRow * rowsPerPage;
 
@@ -63,20 +63,20 @@ const Devices: React.FC = () => {
   };
 
   return (
-    <Stack horizontal tokens={{ childrenGap: 5 }} style={{ overflowX: 'auto', maxWidth: '100%' }}>
-      <Stack grow style={{ position: 'relative' }}>
-        <Text style={{ fontSize: '2rem', marginLeft: '12px', userSelect: 'none' }}>Devices</Text>
-        {isLoading ? (
-          <Stack verticalAlign="center" horizontalAlign="center" style={{ height: '100%', width: '100%' }}>
-            <Spinner size={SpinnerSize.large} label="Loading..." />
-          </Stack>
-        ) : (
-          <CardGrid currentRows={currentRows} cardsPerRow={6} />
-        )}
-        <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', marginBottom: '10px' }}>
-          <Pagination currentPage={currentPage} totalPages={totalPages} onChange={handlePageChange} onLoadingChange={handleLoadingChange} />
+    <Stack verticalFill tokens={{ childrenGap: 10 }} style={{ overflowX: 'auto', maxWidth: '100%', overflowY: 'hidden' }}>
+      <Text style={{ fontSize: '3rem', marginLeft: '25px', userSelect: 'none' }}>Devices</Text>
+      {isLoading ? (
+        <Stack verticalAlign="center" horizontalAlign="center" style={{ flexGrow: 1 }}>
+          <Spinner size={SpinnerSize.large} label="Loading..." />
+        </Stack>
+      ) : (
+        <div style={{ position: 'relative', marginLeft: '15px' }}>
+          <CardGrid currentRows={currentRows} cardsPerRow={cardsPerRow} />
         </div>
-      </Stack>
+      )}
+      <div style={{ position: 'absolute', bottom: '5%', left: '50%' }}>
+        <Pagination currentPage={currentPage} totalPages={totalPages} onChange={handlePageChange} onLoadingChange={handleLoadingChange} />
+      </div>
     </Stack>
   );
 };
