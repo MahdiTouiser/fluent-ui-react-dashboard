@@ -15,10 +15,8 @@ export default function Layout(): JSX.Element {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div style={{ display: 'flex', height: '100vh' }}>
-          <div style={{ width: '200px', backgroundColor: '#f0f0f0', padding: '0 20px 0 0' }}>
-            <SidebarLayout selected={selectedOption} />
-          </div>
+        <div style={{ display: 'flex', height: '95vh' }}>
+          <SidebarLayout selected={selectedOption} />
           <div style={{ flex: 1, padding: '20px', overflowY: 'auto' }}>
             {selectedOption === '/' && <Home />}
             {selectedOption === '/devices' && <Devices />}
