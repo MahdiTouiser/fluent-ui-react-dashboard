@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import SidebarLayout from '@/components/sidebar/SidebarLayout';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import { Spinner, Stack, initializeIcons } from '@fluentui/react';
 import { SpinnerSize } from '@fluentui/react/lib/Spinner';
@@ -65,7 +64,6 @@ const Devices: React.FC = () => {
 
   return (
     <Stack horizontal tokens={{ childrenGap: 5 }} style={{ overflowX: 'auto', maxWidth: '100%' }}>
-      <SidebarLayout />
       <Stack grow style={{ position: 'relative' }}>
         <Text style={{ fontSize: '2rem', marginLeft: '12px', userSelect: 'none' }}>Devices</Text>
         {isLoading ? (
