@@ -1,6 +1,6 @@
 'use client';
 
-import { Nav, INavLink, INavLinkGroup } from '@fluentui/react';
+import { Nav, INavLink, INavLinkGroup, initializeIcons } from '@fluentui/react';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
@@ -18,9 +18,6 @@ const navigationStyles: any = {
     paddingTop: '1vh',
     backgroundColor: '#add8e6 !important',
   },
-  groupContent: {
-    marginBottom: '30px',
-  },
 };
 
 const links: INavLinkGroup[] = [
@@ -30,19 +27,35 @@ const links: INavLinkGroup[] = [
         name: 'Home',
         key: 'home',
         url: '/',
-        icon: 'Home',
+        iconProps: {
+          iconName: 'Home',
+          styles: {
+            root: {
+              fontSize: 30,
+            },
+          },
+        },
       },
       {
         name: 'Devices',
         key: 'devices',
         url: '/devices',
-        icon: 'Devices3',
+        iconProps: {
+          iconName: 'Devices3',
+          styles: {
+            root: {
+              fontSize: 30,
+            },
+          },
+        },
       },
     ],
   },
 ];
 
 const SidebarLayout: React.FC<SidebarLayoutProps> = ({ selected }) => {
+  initializeIcons();
+
   const [selectedItem, setSelectedItem] = useState<string>(selected);
   const router = useRouter();
 

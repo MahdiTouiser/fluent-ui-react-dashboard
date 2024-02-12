@@ -9,8 +9,6 @@ import { Text } from '@fluentui/react-components';
 import CardGrid from '@/components/cardGrid/CardGrid';
 
 const Devices: React.FC = () => {
-  initializeIcons();
-
   const generateCardData = (count: number) => {
     const cards = [];
     for (let i = 1; i <= count; i++) {
